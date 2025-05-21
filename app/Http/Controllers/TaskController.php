@@ -9,6 +9,7 @@ class TaskController extends Controller
 {
     // সব টাস্ক লিস্ট করে
     public function index(){
+     ;
         return Task::all();
     }
 
@@ -16,7 +17,7 @@ class TaskController extends Controller
     public function store(Request $request){
 
         $request->validate(["title" => "required|string|max:255"]);
-        $task = Task::creat([
+        $task = Task::create([
             "title" => $request->title,
         ]);
         
