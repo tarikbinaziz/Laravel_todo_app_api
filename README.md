@@ -115,3 +115,40 @@ Task::find($id) মানে: Task টেবিলে গিয়ে সেই row
 সবকিছু ঠিকঠাক হলে, আমরা এই লাইনে একটা success response পাঠাচ্ছি
 
 JSON আকারে বলছি: "Task deleted successfully"
+
+
+// Step to Create a Table in Mysql
+
+Example: category table:-
+
+✅ Step 1: Category Model ও Migration তৈরি
+   php artisan make:model Category -m
+
+✅ Step 2: Migration ফাইলে টেবিল স্ট্রাকচার লিখো
+
+   তারপর migration চালাও:
+   php artisan migrate
+
+✅ Step 3: Model এ Fillable অ্যাড করো
+
+✅ Step 4: Controller তৈরি করো
+   php artisan make:controller CategoryController
+
+✅ Step 5: API Route অ্যাড করো
+
+✅ Bonus: কিছু ডামি ক্যাটেগরি Insert করো
+   Seeder দিয়ে insert করতে পারো:-
+   php artisan make:seeder CategorySeeder
+   👉 database/seeders/CategorySeeder.php:
+
+        use App\Models\Category;
+
+        public function run()
+        {
+            Category::create(['name' => 'Electronics']);
+            Category::create(['name' => 'Clothing']);
+            Category::create(['name' => 'Books']);
+        }
+
+    তারপর রান করাও:
+    php artisan db:seed --class=CategorySeeder

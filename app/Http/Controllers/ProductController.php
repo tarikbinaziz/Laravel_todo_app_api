@@ -15,6 +15,9 @@ class ProductController extends Controller
         $product->image = url('storage/' . $product->image);
         return $product;
     });
+    // get products with category 
+   // $products = Product::with('category')->get();
+
 
     return response()->json($products);
 
@@ -29,6 +32,9 @@ class ProductController extends Controller
         'description' => 'nullable|string',
         'price'       => 'nullable|numeric',
         'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'color'       => 'nullable|string|max:50',
+        'size'        => 'nullable|string|max:50',
+        'category_id' => 'required|exists:categories,id', 
     ]);
 
     $imagePath = null;
@@ -42,6 +48,9 @@ class ProductController extends Controller
         'description' => $request->description,
         'price'       => $request->price,
         'image'       => $imagePath,
+        'color'       => $request->color,
+        'size'        => $request->size,
+        'category_id' => $request->category_id,
     ]);
 
     return response()->json($product, 201);
